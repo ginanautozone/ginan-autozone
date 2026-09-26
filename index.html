@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GINAN AUTOZONE — Showroom & Toko Otomotif Premium</title>
+
+<!-- Font: Archivo & JetBrains Mono -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400..900;1,400..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<!-- Ikon (Lucide) -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+/* ---------- Variabel & Dasar ---------- */
+:root{
+  --bg:#0a0a0b;
+  --bg2:#131315;
+  --surface:#1a1b1e;
+  --line:#26262b;
+  --white:#f5f5f4;
+  --muted:#a4a4ad;
+  --orange:#ff5a00;
+  --orange2:#ff7a1f;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:'Archivo',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+::selection{background:var(--orange);color:#000}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:#2b2b30}
+::-webkit-scrollbar-track{background:var(--bg)}
+.mono{font-family:'JetBrains Mono',monospace}
+.container{max-width:1280px;margin:0 auto;padding:0 24px}
+section{padding:92px 0}
+section[id]{scroll-margin-top:78px}
+svg{flex:none}
+
+.hd{font-weight:900;font-style:italic;text-transform:uppercase;line-height:.95;letter-spacing:-.02em}
+.hd em{color:var(--orange)}
+.eyebrow{display:flex;align-items:center;gap:12px;color:var(--orange);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
+.eyebrow::before{content:'';width:34px;height:2px;background:var(--orange)}
+.sec-head{margin-bottom:44px}
+.sec-row{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:18px;margin-top:16px}
+.sec-title{font-size:clamp(2rem,4.6vw,3.4rem)}
+.sec-desc{color:var(--muted);max-width:440px;line-height:1.65;font-size:.94rem}
+
+/* Tombol */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;
+     font-weight:800;font-style:italic;text-transform:uppercase;letter-spacing:.03em;
+     font-size:.85rem;padding:16px 26px;transition:.25s}
+.btn svg{width:16px;height:16px;transition:transform .25s}
+.btn-o{background:var(--orange);color:#000;
+       clip-path:polygon(0 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%)}
+.btn-o:hover{background:var(--white)}
+.btn-o:hover svg{transform:translateX(4px)}
+.btn-g{border:1px solid var(--line)}
+.btn-g:hover{border-color:var(--orange);color:var(--orange)}
+.btn-sm{padding:11px 18px;font-size:.72rem}
+.icon-btn{width:42px;height:42px;display:grid;place-items:center;border:1px solid var(--line);transition:.25s}
+.icon-btn:hover{border-color:var(--orange);color:var(--orange)}
+.icon-btn svg{width:17px;height:17px}
+
+/* Welcome Screen */
+body.welcome-on{overflow:hidden}
+body.welcome-on .h-anim{animation-play-state:paused}
+#welcome{position:fixed;inset:0;z-index:200;background:var(--bg);display:grid;place-items:center;
+         text-align:center;padding:24px;transition:opacity .55s ease,visibility .55s}
+#welcome.hide{opacity:0;visibility:hidden;pointer-events:none}
+.w-hello{display:flex;align-items:center;justify-content:center;gap:14px;color:var(--orange);
+         font-size:.72rem;letter-spacing:.34em;text-transform:uppercase}
+.w-hello::before,.w-hello::after{content:'';width:44px;height:2px;background:var(--orange)}
+.w-logo{font-weight:900;font-style:italic;text-transform:uppercase;line-height:.95;letter-spacing:-.02em;
+        font-size:clamp(2.4rem,8.5vw,5.6rem);margin-top:16px}
+.w-logo em{color:var(--orange);font-style:italic}
+.w-sub{color:var(--muted);max-width:480px;line-height:1.75;margin:18px auto 30px;font-size:.95rem}
+.w-stripes{height:8px;max-width:420px;margin:36px auto 0;
+           background:repeating-linear-gradient(-45deg,var(--orange) 0 12px,transparent 12px 24px)}
+.w-anim{opacity:0;transform:translateY(22px);animation:wIn .8s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes wIn{to{opacity:1;transform:none}}
+.wd1{animation-delay:.1s}.wd2{animation-delay:.25s}.wd3{animation-delay:.4s}.wd4{animation-delay:.55s}
+
+/* Header & Navigation */
+#topbar{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(10,10,11,.86);
+        backdrop-filter:blur(12px);border-bottom:1px solid var(--line);transition:.3s}
+#topbar.scrolled{background:rgba(10,10,11,.97)}
+.topbar-in{max-width:1280px;margin:auto;display:flex;align-items:center;gap:1.4rem;padding:0 24px;height:72px}
+.logo{display:flex;flex-direction:column;line-height:1;cursor:pointer}
+.logo b{font-weight:900;font-style:italic;font-size:1.2rem;letter-spacing:-.02em;white-space:nowrap}
+.logo b em{color:var(--orange);font-style:italic}
+.logo span{font-family:'JetBrains Mono';font-size:.55rem;letter-spacing:.3em;color:var(--muted);margin-top:3px}
+.nav{display:flex;gap:26px;margin-left:auto}
+.nav a{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);position:relative;padding:6px 0;transition:color .25s}
+.nav a::after{content:'';position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--orange);transition:width .3s}
+.nav a:hover{color:var(--white)}
+.nav a:hover::after{width:100%}
+.topbar-cta{display:flex;gap:10px;align-items:center}
+#hamb{display:none}
+
+/* Mobile Menu */
+#m-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:59;opacity:0;pointer-events:none;transition:.3s}
+body.nav-open #m-overlay{opacity:1;pointer-events:auto}
+#m-nav{position:fixed;top:0;right:0;bottom:0;width:min(320px,85vw);background:var(--bg2);
+       border-left:1px solid var(--line);z-index:60;transform:translateX(100%);transition:.35s;
+       display:flex;flex-direction:column;padding:24px}
+body.nav-open #m-nav{transform:none}
+.m-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.m-links{display:flex;flex-direction:column;margin:10px 0 auto}
+.m-links a{display:flex;justify-content:space-between;align-items:center;font-weight:900;font-style:italic;
+           text-transform:uppercase;font-size:1.35rem;padding:14px 2px;border-bottom:1px solid var(--line);transition:color .25s}
+.m-links a:hover{color:var(--orange)}
+.m-links svg{width:18px;height:18px;color:var(--orange)}
+.m-foot{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+
+/* Hero Section */
+.hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;padding:72px 0 0;position:relative;overflow:hidden}
+.hero-word{position:absolute;bottom:14%;left:-2%;font-size:clamp(3.2rem,10.5vw,9rem);font-weight:900;font-style:italic;
+           line-height:1;color:transparent;-webkit-text-stroke:1px #232328;pointer-events:none;user-select:none;white-space:nowrap}
+.hero-inner{position:relative;z-index:1;flex:1;display:grid;grid-template-columns:1.05fr 1fr;gap:44px;
+            align-items:center;max-width:1280px;margin:0 auto;padding:56px 24px 40px;width:100%}
+.hero h1{font-size:clamp(2.7rem,6.2vw,5rem)}
+.hero-sub{margin:24px 0 34px;color:var(--muted);line-height:1.75;max-width:490px;font-size:.98rem}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero-media{position:relative}
+.hero-media .frame{position:relative;border:1px solid var(--line);
+                   clip-path:polygon(14% 0,100% 0,100% 100%,0 100%,0 12%)}
+.hero-media img{width:100%;aspect-ratio:4/3;object-fit:cover;filter:saturate(.95)}
+.hero-stripes{position:absolute;top:-16px;right:-16px;width:130px;height:130px;z-index:-1;
+              background:repeating-linear-gradient(-45deg,var(--orange) 0 7px,transparent 7px 15px)}
+.hero-tag{position:absolute;left:16px;bottom:16px;background:rgba(10,10,11,.88);border:1px solid var(--line);
+          padding:9px 13px;font-size:.66rem;letter-spacing:.16em;display:flex;gap:10px;align-items:center;text-transform:uppercase}
+.hero-tag b{color:var(--orange)}
+
+/* Hero Stats */
+.hero-stats{border-top:1px solid var(--line);position:relative;z-index:1}
+.hero-stats-in{max-width:1280px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);padding:0 24px}
+.stat{background:var(--bg);padding:24px 10px}
+.stat b{font-size:clamp(1.6rem,3.4vw,2.4rem);font-weight:900;font-style:italic;font-variant-numeric:tabular-nums}
+.stat b i{color:var(--orange)}
+.stat span{display:block;font-family:'JetBrains Mono';font-size:.62rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;margin-top:5px}
+
+.h-anim{opacity:0;transform:translateY(26px);animation:hIn .8s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes hIn{to{opacity:1;transform:none}}
+.d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}.d4{animation-delay:.35s}.d5{animation-delay:.45s}
+
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+/* Marquee */
+.marquee{background:var(--orange);color:#000;overflow:hidden;padding:14px 0;border-block:1px solid #000}
+.marquee-track{display:flex;width:max-content;animation:mq 26s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.mq-group{display:flex;align-items:center;gap:44px;padding-right:44px;white-space:nowrap;
+          font-weight:900;font-style:italic;text-transform:uppercase;font-size:1.02rem;letter-spacing:.01em}
+.mq-group svg{width:18px;height:18px}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* Category List */
+.cat-list{border-top:1px solid var(--line)}
+.cat-row{display:grid;grid-template-columns:70px 1fr auto 30px;align-items:center;gap:20px;
+         padding:22px 10px;border-bottom:1px solid var(--line);cursor:pointer;
+         transition:background .25s,color .25s,padding .25s}
+.cat-row:hover{background:var(--orange);color:#000;padding-left:26px}
+.cat-num{color:var(--muted);font-size:.78rem}
+.cat-row:hover .cat-num{color:rgba(0,0,0,.55)}
+.cat-name{font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(1.25rem,3vw,2rem);letter-spacing:-.01em}
+.cat-count{color:var(--muted);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
+.cat-row:hover .cat-count{color:rgba(0,0,0,.6)}
+.cat-row svg{width:22px;height:22px;transition:transform .25s}
+.cat-row:hover svg{transform:translate(3px,-3px)}
+
+/* Product Cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.card{background:var(--bg2);display:flex;flex-direction:column;position:relative;transition:background .3s}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--orange);
+              transform:scaleX(0);transform-origin:left;transition:transform .35s;z-index:2}
+.card:hover::before{transform:scaleX(1)}
+.card:hover{background:var(--surface)}
+.card-media{position:relative;overflow:hidden;aspect-ratio:16/10;cursor:pointer;display:block}
+.card-media img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1);filter:saturate(.92)}
+.card:hover .card-media img{transform:scale(1.07)}
+.badge{position:absolute;top:12px;left:12px;font-family:'JetBrains Mono';font-weight:700;font-size:.64rem;
+       letter-spacing:.14em;padding:5px 9px;text-transform:uppercase;z-index:2}
+.badge-disc{background:var(--orange);color:#000}
+.badge-new{background:#fff;color:#000}
+.badge-out{background:#000;color:var(--orange);border:1px solid var(--orange)}
+.card-go{position:absolute;right:12px;bottom:12px;width:38px;height:38px;display:grid;place-items:center;
+         background:var(--orange);color:#000;opacity:0;transform:translateY(8px);transition:.3s;z-index:2}
+.card-go svg{width:17px;height:17px}
+.card:hover .card-go{opacity:1;transform:none}
+.card-body{padding:18px 18px 6px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card-meta{font-size:.64rem;letter-spacing:.16em;color:var(--muted);text-transform:uppercase}
+.card-meta b{color:var(--orange);font-weight:700}
+.card-name{font-weight:800;text-transform:uppercase;letter-spacing:-.01em;font-size:1.02rem;line-height:1.2}
+.card-desc{font-size:.84rem;color:var(--muted);line-height:1.55;
+           display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-price{margin-top:auto;padding-top:10px;display:flex;flex-direction:column;gap:2px}
+.price-old{color:var(--muted);text-decoration:line-through;font-size:.73rem}
+.price{font-weight:900;font-style:italic;font-size:1.18rem;letter-spacing:-.01em}
+.card-actions{display:flex;border-top:1px solid var(--line);margin-top:14px}
+.card-actions>*{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 8px;
+                font-size:.72rem;font-weight:800;font-style:italic;text-transform:uppercase;letter-spacing:.06em;transition:.25s}
+.card-actions svg{width:15px;height:15px}
+.act-detail:hover{background:var(--orange);color:#000}
+.act-wa{flex:0 0 54px;border-left:1px solid var(--line)}
+.act-wa:hover{background:#fff;color:#000}
+
+/* Featured Products Variant */
+.feat-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.feat-side{display:grid;grid-template-rows:1fr 1fr;gap:1px;background:var(--line)}
+.card-lg .card-media{aspect-ratio:16/9}
+.card-lg .card-name{font-size:1.45rem}
+.card-lg .card-desc{-webkit-line-clamp:3;font-size:.92rem}
+.feat-side .card-media{aspect-ratio:16/7}
+.feat-side .card-desc{display:none}
+.feat-side .card-name{font-size:.95rem}
+
+/* Promo Section */
+.promo-panel{border:1px solid var(--line);background:var(--bg2)}
+.stripes{height:8px;background:repeating-linear-gradient(-45deg,var(--orange) 0 10px,transparent 10px 20px)}
+.promo-grid{display:grid;grid-template-columns:1.1fr 1fr}
+.promo-left{padding:46px;border-right:1px solid var(--line)}
+.promo-title{font-size:clamp(2rem,4vw,3.1rem);margin-top:14px}
+.promo-text{color:var(--muted);line-height:1.7;margin:14px 0 26px;max-width:460px}
+.count{display:flex;gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:28px;max-width:430px}
+.count-cell{flex:1;background:var(--bg);padding:14px 6px;text-align:center}
+.count-cell b{display:block;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:900;font-style:italic;font-variant-numeric:tabular-nums}
+.count-cell span{font-family:'JetBrains Mono';font-size:.58rem;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
+.promo-right{display:flex;flex-direction:column}
+.promo-item{display:flex;gap:16px;align-items:center;padding:20px 24px;border-bottom:1px solid var(--line);
+            cursor:pointer;transition:background .25s;flex:1}
+.promo-item:last-child{border-bottom:0}
+.promo-item:hover{background:var(--surface)}
+.promo-item img{width:88px;height:64px;object-fit:cover;border:1px solid var(--line)}
+.promo-item-info{display:flex;flex-direction:column;gap:4px;min-width:0}
+.promo-cat{font-size:.62rem;letter-spacing:.16em;color:var(--orange);text-transform:uppercase}
+.promo-item h4{font-weight:800;text-transform:uppercase;font-size:.92rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.promo-price{display:flex;gap:10px;align-items:baseline}
+.promo-price s{color:var(--muted);font-size:.7rem}
+.promo-price b{color:var(--orange);font-weight:800;font-style:italic}
+.promo-item>svg{width:20px;height:20px;margin-left:auto;color:var(--muted);transition:.25s}
+.promo-item:hover>svg{color:var(--orange);transform:translate(3px,-3px)}
+
+/* Advantages */
+.adv-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.adv{background:var(--bg2);padding:32px;display:flex;gap:22px;align-items:flex-start;transition:background .3s}
+.adv:hover{background:var(--surface)}
+.adv-num{font-family:'JetBrains Mono';color:var(--orange);font-size:.85rem;padding-top:5px}
+.adv h3{font-weight:800;text-transform:uppercase;font-size:1.05rem;margin-bottom:8px}
+.adv p{color:var(--muted);font-size:.88rem;line-height:1.6}
+.adv svg{width:26px;height:26px;color:var(--orange);margin-left:auto}
+.ship-block{margin-top:64px}
+.ship-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.ship{background:var(--bg2);padding:28px;display:flex;flex-direction:column;gap:10px;transition:background .3s}
+.ship:hover{background:var(--surface)}
+.ship svg{width:26px;height:26px;color:var(--orange)}
+.ship h4{font-weight:800;text-transform:uppercase;font-size:.92rem}
+.ship p{font-size:.8rem;color:var(--muted);line-height:1.55}
+.ship-note{margin-top:16px;font-family:'JetBrains Mono';font-size:.72rem;color:var(--muted);display:flex;gap:10px;align-items:center}
+.ship-note svg{width:15px;height:15px;color:var(--orange)}
+
+/* Testimonials */
+.testi-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.testi-side{display:grid;gap:1px;background:var(--line)}
+.testi{background:var(--bg2);padding:34px;display:flex;flex-direction:column;gap:16px}
+.testi svg.q{width:30px;height:30px;color:var(--orange)}
+.testi p{line-height:1.65;color:#d4d4da;font-style:italic}
+.testi-lg p{font-size:clamp(1.1rem,2vw,1.45rem);font-weight:600}
+.testi-sm p{font-size:.94rem}
+.stars{display:flex;gap:3px}
+.stars svg{width:15px;height:15px;fill:var(--orange);color:var(--orange)}
+.testi-who{margin-top:auto;display:flex;flex-direction:column;gap:3px}
+.testi-who b{font-weight:800;text-transform:uppercase;font-size:.85rem}
+.testi-who span{font-family:'JetBrains Mono';font-size:.68rem;color:var(--muted)}
+
+/* FAQ */
+.faq-list{border-top:1px solid var(--line);max-width:860px}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 4px;
+       text-align:left;font-weight:800;font-size:1rem;text-transform:uppercase;letter-spacing:.01em;transition:color .25s}
+.faq-q:hover{color:var(--orange)}
+.faq-q svg{width:18px;height:18px;color:var(--orange);transition:transform .3s}
+.faq-item.open .faq-q svg{transform:rotate(45deg)}
+.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
+.faq-a>div{overflow:hidden}
+.faq-a p{padding:0 4px 22px;color:var(--muted);line-height:1.75;max-width:760px;font-size:.93rem}
+.faq-item.open .faq-a{grid-template-rows:1fr}
+
+/* Footer */
+footer{border-top:1px solid var(--line);background:#070708}
+.f-word{font-size:clamp(2.4rem,8vw,6.5rem);font-weight:900;font-style:italic;line-height:1;
+        color:transparent;-webkit-text-stroke:1px #2a2a30;user-select:none;padding:56px 0 8px;white-space:nowrap}
+.f-word em{color:var(--orange);-webkit-text-stroke:0;font-style:italic}
+.f-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:36px;padding:36px 0 56px}
+.f-tag{color:var(--muted);font-size:.88rem;line-height:1.65;margin:14px 0 22px;max-width:300px}
+.f-sos{display:flex;gap:10px}
+.f-grid h5{font-family:'JetBrains Mono';font-size:.64rem;letter-spacing:.22em;color:var(--orange);text-transform:uppercase;margin-bottom:16px}
+.f-grid p,.f-grid a{color:var(--muted);font-size:.88rem;line-height:1.8}
+.f-grid a{display:flex;gap:10px;align-items:center;transition:color .25s}
+.f-grid a:hover{color:var(--white)}
+.f-grid a svg{width:15px;height:15px;color:var(--orange)}
+.hazard{height:8px;background:repeating-linear-gradient(-45deg,var(--orange) 0 12px,#000 12px 24px)}
+.f-bottom{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;padding:22px 0;
+          font-family:'JetBrains Mono';font-size:.7rem;color:var(--muted)}
+.f-bottom button{display:flex;gap:8px;align-items:center;font-family:'JetBrains Mono';font-size:.7rem;
+                 letter-spacing:.12em;text-transform:uppercase;color:var(--muted);transition:color .25s}
+.f-bottom button:hover{color:var(--orange)}
+.f-bottom svg{width:13px;height:13px}
+
+/* Detail View */
+.detail-wrap{padding:120px 0 90px}
+.back-link{display:inline-flex;gap:10px;align-items:center;font-family:'JetBrains Mono';font-size:.72rem;
+           letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:26px;transition:color .25s}
+.back-link:hover{color:var(--orange)}
+.back-link svg{width:15px;height:15px}
+.detail-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:46px;align-items:start}
+.detail-media{position:relative;border:1px solid var(--line)}
+.detail-media img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.detail-sku{position:absolute;left:14px;bottom:14px;background:rgba(10,10,11,.88);border:1px solid var(--line);
+            padding:7px 11px;font-size:.66rem;letter-spacing:.16em;color:var(--muted)}
+.detail-info h1{font-size:clamp(1.8rem,3.6vw,2.9rem);margin:14px 0 4px}
+.detail-price{display:flex;flex-wrap:wrap;align-items:baseline;gap:14px;border-block:1px solid var(--line);padding:20px 0;margin:18px 0}
+.detail-price .price{font-size:clamp(1.6rem,3vw,2.2rem)}
+.detail-desc{color:var(--muted);line-height:1.8}
+.spec{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin:26px 0}
+.spec>div{background:var(--bg2);padding:14px 16px}
+.spec span{display:block;font-family:'JetBrains Mono';font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.spec b{font-weight:700;font-size:.92rem}
+.detail-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:4px}
+.detail-note{margin-top:20px;font-size:.7rem;color:var(--muted);display:flex;gap:9px;align-items:center;letter-spacing:.04em}
+.detail-note svg{width:15px;height:15px;color:var(--orange)}
+.related{margin-top:84px}
+.related .sec-title{font-size:clamp(1.5rem,3vw,2.1rem)}
+.chip{font-family:'JetBrains Mono';font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
+      border:1px solid var(--line);padding:4px 9px}
+.chip.on{background:var(--orange);color:#000;border-color:var(--orange);font-weight:700}
+
+/* Admin View & Login Form */
+.admin-wrap{padding:120px 0 90px}
+.admin-head{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:flex-end;margin-bottom:26px}
+.admin-tag{display:inline-block;background:var(--orange);color:#000;font-weight:700;font-size:.62rem;
+           letter-spacing:.22em;padding:5px 10px;margin-bottom:12px;text-transform:uppercase}
+.admin-head h2{font-size:clamp(1.8rem,4vw,2.8rem)}
+.admin-actions{display:flex;gap:10px;flex-wrap:wrap}
+.admin-tools{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:16px}
+.admin-search{display:flex;align-items:center;gap:10px;border:1px solid var(--line);padding:0 14px;background:var(--bg2)}
+.admin-search input{background:none;border:none;outline:none;color:var(--white);padding:11px 0;width:230px;font-family:inherit;font-size:.9rem}
+.admin-search svg{width:15px;height:15px;color:var(--muted)}
+#admin-count{font-family:'JetBrains Mono';font-size:.7rem;color:var(--muted);letter-spacing:.08em}
+.table-wrap{overflow-x:auto;border:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;min-width:820px;background:var(--bg2)}
+th{font-family:'JetBrains Mono';font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+   text-align:left;padding:14px 16px;border-bottom:1px solid var(--line);background:#101012}
+td{padding:13px 16px;border-bottom:1px solid var(--line);vertical-align:middle;font-size:.9rem}
+tbody tr:hover td{background:#17181b}
+.prod-cell{display:flex;gap:12px;align-items:center;min-width:220px}
+.prod-cell img{width:58px;height:40px;object-fit:cover;border:1px solid var(--line)}
+.sku{display:block;color:var(--muted);font-size:.64rem;letter-spacing:.1em;margin-top:3px}
+.td-price{font-size:.82rem;white-space:nowrap}
+.td-old{color:var(--muted);font-size:.72rem}
+.stock-low{color:var(--orange);font-weight:700}
+.row-actions{display:flex;gap:8px}
+.mini-btn{width:34px;height:34px;border:1px solid var(--line);display:grid;place-items:center;transition:.2s}
+.mini-btn svg{width:15px;height:15px}
+.mini-btn:hover{border-color:var(--orange);color:var(--orange)}
+.chip-new{background:#fff;color:#000;border-color:#fff}
+.chip-out{color:var(--orange);border-color:var(--orange)}
+.feat-star{fill:var(--orange);color:var(--orange)}
+.admin-note{margin-top:16px;font-family:'JetBrains Mono';font-size:.68rem;color:var(--muted);display:flex;gap:9px;align-items:center}
+.admin-note svg{width:14px;height:14px;color:var(--orange)}
+.empty-td{text-align:center;color:var(--muted);padding:40px}
+
+.login-card{max-width:420px;margin:40px auto;background:var(--bg2);border:1px solid var(--line);padding:32px;display:flex;flex-direction:column;gap:16px}
+.login-card h3{font-size:1.2rem;text-transform:uppercase;font-style:italic}
+.login-card p{color:var(--muted);font-size:.85rem;line-height:1.5}
+.notice-box{border-left:3px solid var(--orange);padding:12px 14px;background:#1e1a17;color:#ffd9c4;font-size:.8rem;line-height:1.5;margin-bottom:20px}
+
+/* Catalog Toolbar */
+.catalog-bar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;margin-bottom:18px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip-f{font-family:'JetBrains Mono';font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+        border:1px solid var(--line);padding:9px 14px;color:var(--muted);transition:.2s}
+.chip-f:hover{color:var(--white);border-color:#3d3d44}
+.chip-f.on{background:var(--orange);border-color:var(--orange);color:#000;font-weight:700}
+.catalog-right{display:flex;gap:10px;flex-wrap:wrap}
+.search-box{display:flex;align-items:center;gap:10px;border:1px solid var(--line);padding:0 14px;background:var(--bg2)}
+.search-box svg{width:15px;height:15px;color:var(--muted)}
+.search-box input{background:none;border:none;outline:none;color:var(--white);padding:11px 0;width:200px;font-family:inherit;font-size:.9rem}
+.sort{background:var(--bg2);border:1px solid var(--line);color:var(--white);padding:11px 14px;font-family:inherit;font-size:.85rem;outline:none}
+.sort option,select option{background:#141416;color:#fff}
+.result-info{font-family:'JetBrains Mono';font-size:.7rem;color:var(--muted);margin-bottom:14px;letter-spacing:.06em}
+.empty{grid-column:1/-1;border:1px dashed var(--line);padding:60px 20px;text-align:center;
+       display:flex;flex-direction:column;align-items:center;gap:14px;color:var(--muted);line-height:1.7}
+.empty svg{width:30px;height:30px;color:var(--orange)}
+
+/* Modals */
+.modal{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:20px;visibility:hidden;opacity:0;transition:.25s}
+.modal.show{visibility:visible;opacity:1}
+.modal-back{position:absolute;inset:0;background:rgba(5,5,6,.78);backdrop-filter:blur(4px)}
+.modal-box{position:relative;width:min(680px,100%);max-height:90vh;overflow:auto;background:var(--bg2);
+           border:1px solid var(--line);transform:translateY(18px) scale(.98);transition:.3s cubic-bezier(.2,.7,.2,1)}
+.modal-box.sm{width:min(460px,100%)}
+.modal.show .modal-box{transform:none}
+.modal-head{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;
+            border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg2);z-index:2}
+.modal-head h3{font-weight:900;font-style:italic;text-transform:uppercase;font-size:1.05rem}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:24px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+.field label{font-family:'JetBrains Mono';font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.field input,.field select,.field textarea{background:var(--bg);border:1px solid var(--line);color:var(--white);
+   padding:12px 14px;font-family:inherit;font-size:.92rem;outline:none;transition:border-color .2s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--orange)}
+.field textarea{min-height:96px;resize:vertical}
+.field small{color:var(--muted);font-size:.72rem;line-height:1.5}
+.check{flex-direction:row;align-items:center;gap:10px}
+.check input{width:18px;height:18px;accent-color:var(--orange)}
+.img-row{display:flex;gap:10px}
+.img-row input{flex:1}
+.img-preview{width:100%;aspect-ratio:16/9;object-fit:cover;border:1px solid var(--line);background:var(--bg);margin-bottom:10px}
+.form-foot{display:flex;justify-content:flex-end;gap:12px;padding:18px 24px;border-top:1px solid var(--line)}
+.confirm-body{padding:30px 26px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+.confirm-body svg{width:34px;height:34px;color:var(--orange)}
+.confirm-body h4{font-weight:900;font-style:italic;text-transform:uppercase;font-size:1.15rem}
+.confirm-body p{color:var(--muted);line-height:1.7;font-size:.9rem}
+
+/* Toasts */
+#toasts{position:fixed;right:20px;bottom:20px;z-index:100;display:flex;flex-direction:column;gap:10px}
+.toast{display:flex;gap:12px;align-items:center;background:var(--bg2);border:1px solid var(--line);
+       border-left:3px solid var(--orange);padding:14px 18px;min-width:250px;max-width:340px;
+       font-size:.86rem;animation:tIn .35s cubic-bezier(.2,.7,.2,1)}
+.toast svg{width:18px;height:18px;color:var(--orange)}
+.toast.out{animation:tOut .3s forwards}
+@keyframes tIn{from{opacity:0;transform:translateX(30px)}}
+@keyframes tOut{to{opacity:0;transform:translateX(30px)}}
+
+/* Responsive */
+@media(max-width:1024px){
+  .nav,.topbar-cta .btn{display:none}
+  #hamb{display:grid}
+  .hero-inner{grid-template-columns:1fr;padding-top:36px}
+  .hero-media{max-width:620px}
+  .feat-grid{grid-template-columns:1fr}
+  .promo-grid{grid-template-columns:1fr}
+  .promo-left{border-right:0;border-bottom:1px solid var(--line)}
+  .testi-grid{grid-template-columns:1fr}
+  .detail-grid{grid-template-columns:1fr}
+  .f-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:680px){
+  section{padding:70px 0}
+  .hero-stats-in{grid-template-columns:1fr 1fr}
+  .adv-grid{grid-template-columns:1fr}
+  .ship-bar{grid-template-columns:1fr}
+  .f-grid{grid-template-columns:1fr}
+  .cat-row{grid-template-columns:1fr 30px}
+  .cat-num,.cat-count{display:none}
+  .form-grid{grid-template-columns:1fr}
+  .form-foot{flex-direction:column-reverse}
+  .form-foot .btn{width:100%}
+  .detail-cta .btn{width:100%}
+}
+</style>
+</head>
+<body class="welcome-on">
+
+<!-- WELCOME SCREEN -->
+<div id="welcome">
+  <div class="w-inner">
+    <div class="w-hello mono w-anim wd1">Selamat Datang di</div>
+    <div class="w-logo w-anim wd2">GINAN<em>AUTOZONE</em></div>
+    <p class="w-sub w-anim wd3">
+      Showroom &amp; toko otomotif premium milik Ginan — mobil, motor, suku cadang, oli, ban,
+      helm, dan aksesoris original dengan garansi resmi. Selamat berbelanja!
+    </p>
+    <div class="w-anim wd4">
+      <button class="btn btn-o" id="w-enter">Masuk ke Showroom <i data-lucide="arrow-right"></i></button>
+    </div>
+    <div class="w-stripes w-anim wd4"></div>
+  </div>
+</div>
+
+<!-- HEADER / NAVBAR -->
+<header id="topbar">
+  <div class="topbar-in">
+    <div class="logo" data-action="go-home">
+      <b>GINAN<em>AUTOZONE</em></b><span>AUTOMOTIVE STORE</span>
+    </div>
+    <nav class="nav">
+      <a href="#" data-sec="beranda">Beranda</a>
+      <a href="#" data-sec="kategori">Kategori</a>
+      <a href="#" data-sec="katalog">Katalog</a>
+      <a href="#" data-sec="promo">Promo</a>
+      <a href="#" data-sec="testimoni">Testimoni</a>
+      <a href="#" data-sec="faq">FAQ</a>
+    </nav>
+    <div class="topbar-cta">
+      <a class="btn btn-g btn-sm wa-generic" href="#" target="_blank" rel="noopener">
+        <i data-lucide="message-circle"></i>WhatsApp
+      </a>
+      <button class="icon-btn" data-action="open-admin" title="Panel Admin"><i data-lucide="lock"></i></button>
+      <button class="icon-btn" id="hamb" title="Menu"><i data-lucide="menu"></i></button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<div id="m-overlay"></div>
+<aside id="m-nav">
+  <div class="m-head">
+    <b class="hd" style="font-size:1.05rem">GINAN<em style="color:var(--orange)">AUTOZONE</em></b>
+    <button class="icon-btn" id="m-close"><i data-lucide="x"></i></button>
+  </div>
+  <nav class="m-links">
+    <a href="#" data-sec="beranda">Beranda <i data-lucide="arrow-up-right"></i></a>
+    <a href="#" data-sec="kategori">Kategori <i data-lucide="arrow-up-right"></i></a>
+    <a href="#" data-sec="katalog">Katalog <i data-lucide="arrow-up-right"></i></a>
+    <a href="#" data-sec="promo">Promo <i data-lucide="arrow-up-right"></i></a>
+    <a href="#" data-sec="testimoni">Testimoni <i data-lucide="arrow-up-right"></i></a>
+    <a href="#" data-sec="faq">FAQ <i data-lucide="arrow-up-right"></i></a>
+  </nav>
+  <div class="m-foot">
+    <a class="btn btn-o wa-generic" href="#" target="_blank" rel="noopener"><i data-lucide="message-circle"></i>Hubungi Kami</a>
+    <button class="btn btn-g" data-action="open-admin"><i data-lucide="lock"></i>Panel Admin</button>
+  </div>
+</aside>
+
+<main>
+<!-- MAIN VIEW -->
+<div id="view-home">
+
+  <!-- HERO -->
+  <section class="hero" id="beranda">
+    <div class="hero-word" aria-hidden="true">GINAN AUTOZONE</div>
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <div class="eyebrow h-anim d1">Selamat Datang di GINAN AUTOZONE — Showroom &amp; Toko Otomotif</div>
+        <h1 class="hd h-anim d2" style="margin-top:18px">Dominasi<br><em>Setiap</em> Perjalanan.</h1>
+        <p class="hero-sub h-anim d3">
+          Halo! Selamat datang di web <b style="color:var(--white)">Ginan</b>. Dari mobil sport hingga suku cadang
+          presisi — kami menyediakan produk otomotif original dengan garansi resmi, harga terbaik,
+          dan layanan purna jual yang terpercaya.
+        </p>
+        <div class="hero-cta h-anim d4">
+          <button class="btn btn-o" data-sec="katalog">Lihat Produk <i data-lucide="arrow-right"></i></button>
+          <a class="btn btn-g wa-generic" href="#" target="_blank" rel="noopener">Hubungi Kami <i data-lucide="message-circle"></i></a>
+        </div>
+      </div>
+      <div class="hero-media h-anim d3">
+        <div class="hero-stripes"></div>
+        <figure class="frame">
+          <img src="https://picsum.photos/seed/az-hero-sport/1100/820.jpg" alt="Mobil sport GINAN AUTOZONE">
+          <figcaption class="hero-tag mono">Unit Premium · <b>Ready Stock</b></figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="hero-stats h-anim d5">
+      <div class="hero-stats-in">
+        <div class="stat" data-count="250"><b><span class="cnt">0</span><i>+</i></b><span>Produk Berkualitas</span></div>
+        <div class="stat" data-count="12000"><b><span class="cnt">0</span><i>+</i></b><span>Pelanggan Puas</span></div>
+        <div class="stat" data-count="15"><b><span class="cnt">0</span></b><span>Tahun Pengalaman</span></div>
+        <div class="stat" data-count="98"><b><span class="cnt">0</span><i>%</i></b><span>Ulasan Positif</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="mq-group" id="mq-group">
+        <span>Selamat Datang di GINAN AUTOZONE</span><i data-lucide="zap"></i>
+        <span>Gratis Ongkir Setiap Hari</span><i data-lucide="zap"></i>
+        <span>Diskon Hingga 25%</span><i data-lucide="zap"></i>
+        <span>100% Produk Original</span><i data-lucide="zap"></i>
+        <span>Garansi Resmi Distributor</span><i data-lucide="zap"></i>
+        <span>Showroom Senin–Sabtu</span><i data-lucide="zap"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- KATEGORI -->
+  <section id="kategori">
+    <div class="container">
+      <div class="sec-head rv">
+        <div class="eyebrow">01 / Kategori Produk</div>
+        <div class="sec-row">
+          <h2 class="sec-title hd">Pilih <em>Kebutuhanmu</em></h2>
+          <p class="sec-desc">Kategori utama untuk semua kebutuhan otomotif — klik untuk langsung menyaring katalog.</p>
+        </div>
+      </div>
+      <div class="cat-list rv" id="cat-list"></div>
+    </div>
+  </section>
+
+  <!-- PRODUK UNGGULAN -->
+  <section id="unggulan">
+    <div class="container">
+      <div class="sec-head rv">
+        <div class="eyebrow">02 / Produk Unggulan</div>
+        <div class="sec-row">
+          <h2 class="sec-title hd">Unit <em>Pilihan</em> Minggu Ini</h2>
+          <p class="sec-desc">Kurasi tim GINAN AUTOZONE: unit paling dicari dengan kondisi terbaik dan stok terbatas.</p>
+        </div>
+      </div>
+      <div class="feat-grid rv">
+        <div id="feat-main"></div>
+        <div class="feat-side" id="feat-side"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMO TERBATAS -->
+  <section id="promo">
+    <div class="container">
+      <div class="promo-panel rv">
+        <div class="stripes"></div>
+        <div class="promo-grid">
+          <div class="promo-left">
+            <div class="eyebrow">03 / Promo Terbatas</div>
+            <h2 class="promo-title hd" id="promo-title">Flash Sale Akhir Bulan</h2>
+            <p class="promo-text" id="promo-text"></p>
+            <div class="count" id="countdown">
+              <div class="count-cell"><b id="cd-d">00</b><span>Hari</span></div>
+              <div class="count-cell"><b id="cd-h">00</b><span>Jam</span></div>
+              <div class="count-cell"><b id="cd-m">00</b><span>Menit</span></div>
+              <div class="count-cell"><b id="cd-s">00</b><span>Detik</span></div>
+            </div>
+            <button class="btn btn-o" data-sec="katalog">Lihat Semua Promo <i data-lucide="arrow-right"></i></button>
+          </div>
+          <div class="promo-right" id="promo-list"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KATALOG LENGKAP -->
+  <section id="katalog">
+    <div class="container">
+      <div class="sec-head rv">
+        <div class="eyebrow">04 / Katalog Produk</div>
+        <div class="sec-row">
+          <h2 class="sec-title hd">Semua <em>Produk</em></h2>
+          <p class="sec-desc">Gunakan pencarian, filter kategori, dan pengurutan harga untuk menemukan produk yang tepat.</p>
+        </div>
+      </div>
+      <div class="catalog-bar rv">
+        <div class="chips" id="chips"></div>
+        <div class="catalog-right">
+          <div class="search-box">
+            <i data-lucide="search"></i>
+            <input type="text" id="inp-search" placeholder="Cari produk...">
+          </div>
+          <select class="sort" id="sel-sort">
+            <option value="default">Paling Sesuai</option>
+            <option value="price-asc">Harga Terendah</option>
+            <option value="price-desc">Harga Tertinggi</option>
+            <option value="name">Nama A–Z</option>
+          </select>
+        </div>
+      </div>
+      <p class="result-info" id="result-info"></p>
+      <div class="grid rv" id="catalog-grid"></div>
+    </div>
+  </section>
+
+  <!-- KEUNGGULAN & PENGIRIMAN -->
+  <section id="keunggulan">
+    <div class="container">
+      <div class="sec-head rv">
+        <div class="eyebrow">05 / Keunggulan Toko</div>
+        <div class="sec-row">
+          <h2 class="sec-title hd">Kenapa <em>Ginan Autozone</em></h2>
+        </div>
+      </div>
+      <div class="adv-grid rv">
+        <div class="adv">
+          <span class="adv-num">01</span>
+          <div><h3>Produk Original 100%</h3><p>Semua unit dan komponen dibeli langsung dari distributor resmi. Setiap produk menyertakan bukti keaslian dan kartu garansi.</p></div>
+          <i data-lucide="badge-check"></i>
+        </div>
+        <div class="adv">
+          <span class="adv-num">02</span>
+          <div><h3>Garansi &amp; Tukar 7 Hari</h3><p>Garansi resmi distributor ditambah garansi toko: tukar unit dalam 7 hari jika tidak sesuai deskripsi, tanpa syarat rumit.</p></div>
+          <i data-lucide="shield-check"></i>
+        </div>
+        <div class="adv">
+          <span class="adv-num">03</span>
+          <div><h3>Pengiriman Aman Nasional</h3><p>Packing kayu untuk unit bermotor, video unboxing sebelum dikirim, dan asuransi pengiriman penuh ke seluruh Indonesia.</p></div>
+          <i data-lucide="truck"></i>
+        </div>
+        <div class="adv">
+          <span class="adv-num">04</span>
+          <div><h3>Tim Support Berpengalaman</h3><p>Konsultasi gratis sebelum &amp; sesudah pembelian — dari pemilihan unit hingga rekomendasi perawatan berkala.</p></div>
+          <i data-lucide="headset"></i>
+        </div>
+      </div>
+
+      <div class="ship-block rv">
+        <div class="eyebrow" style="margin-bottom:22px">Informasi Pengiriman</div>
+        <div class="ship-bar">
+          <div class="ship">
+            <i data-lucide="timer"></i><h4>Same-Day Area Terdekat</h4>
+            <p>Pesan sebelum jam 14.00, unit dikirim di hari yang sama untuk area sekitar Ciseeng &amp; Jabodetabek.</p>
+          </div>
+          <div class="ship">
+            <i data-lucide="package-check"></i><h4>Packing Berlapis</h4>
+            <p>Kayu + bubble wrap untuk unit, anti-pecah untuk oli dan suku cadang. Semua direkam video.</p>
+          </div>
+          <div class="ship">
+            <i data-lucide="map-pin"></i><h4>Jangkauan 34 Provinsi</h4>
+            <p>Reguler 2–5 hari kerja ke seluruh Indonesia dengan ekspedisi mitra terverifikasi.</p>
+          </div>
+          <div class="ship">
+            <i data-lucide="wrench"></i><h4>Instalasi &amp; Servis</h4>
+            <p>Ban, oli, dan aksesoris bisa langsung dipasang di workshop partner kami.</p>
+          </div>
+        </div>
+        <div class="ship-note"><i data-lucide="shield-check"></i>Setiap pengiriman disertai video unboxing sebagai bukti kondisi barang.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONI -->
+  <section id="testimoni">
+    <div class="container">
+      <div class="sec-head rv">
+        <div class="eyebrow">06 / Testimoni Pelanggan</div>
+        <div class="sec-row">
+          <h2 class="sec-title hd">Kata <em>Mereka</em></h2>
+        </div>
+      </div>
+      <div class="testi-grid rv">
+        <div class="testi testi-lg">
+          <i data-lucide="quote" class="q"></i>
+          <p>Unit Mustang-nya sampai dalam kondisi prima, lengkap dengan video unboxing sebelum dikirim. Dari order sampai tiga hari, admin fast respon banget via WhatsApp. Pokoknya langganan.</p>
+          <div class="stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+          <div class="testi-who"><b>Rangga Pratama</b><span>Pembelian: Ford Mustang GT — Jakarta</span></div>
+        </div>
+        <div class="testi-side">
+          <div class="testi testi-sm">
+            <i data-lucide="quote" class="q"></i>
+            <p>"Helm original dengan box resmi dan kartu garansi. Harganya paling masuk akal dibanding toko lain."</p>
+            <div class="stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+            <div class="testi-who"><b>Desti Ananda</b><span>Pembelian: Helm AGV K6 — Bandung</span></div>
+          </div>
+          <div class="testi testi-sm">
+            <i data-lucide="quote" class="q"></i>
+            <p>"Langganan oli di sini. Selalu asli, packing rapi, dan respon via WhatsApp cepat sekali."</p>
+            <div class="stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+            <div class="testi-who"><b>Budi Santoso</b><span>Pembelian: Oli Sintetik 10W-40 — Surabaya</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="sec-head rv">
+        <div class="eyebrow">07 / FAQ</div>
+        <div class="sec-row">
+          <h2 class="sec-title hd">Sering <em>Ditanyakan</em></h2>
+        </div>
+      </div>
+      <div class="faq-list rv">
+        <div class="faq-item">
+          <button class="faq-q">Bagaimana cara memesan produk? <i data-lucide="plus"></i></button>
+          <div class="faq-a"><div><p>Klik tombol "Pesan via WhatsApp" pada produk yang kamu inginkan. Tim kami akan mengonfirmasi ketersediaan, metode pembayaran, lalu mengatur pengiriman.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Apakah semua produk dijamin original? <i data-lucide="plus"></i></button>
+          <div class="faq-a"><div><p>Ya. Kami hanya bekerja sama dengan distributor resmi. Setiap produk menyertakan kartu garansi, dan unit mobil/motor bisa dicek keasliannya langsung di lokasi kami atau melalui video call.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Berapa lama estimasi pengiriman? <i data-lucide="plus"></i></button>
+          <div class="faq-a"><div><p>Same-day untuk Jabodetabek (pesan sebelum 14.00), 1–2 hari untuk Pulau Jawa, dan 2–5 hari kerja untuk luar Jawa. Unit bermotor dikirim dengan pengangkut khusus berasuransi penuh.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Apakah tersedia garansi dan tukar unit? <i data-lucide="plus"></i></button>
+          <div class="faq-a"><div><p>Semua produk bergaransi resmi distributor. Tambahan dari GINAN AUTOZONE: tukar unit dalam 7 hari jika kondisi tidak sesuai deskripsi, dengan video unboxing sebagai bukti.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Bisakah test drive dulu sebelum beli mobil/motor? <i data-lucide="plus"></i></button>
+          <div class="faq-a"><div><p>Bisa. Jadwalkan kunjungan melalui WhatsApp kami. Showroom buka Senin–Sabtu pukul 08.00–20.00 WIB, dan tim kami siap mendampingi saat pengecekan unit.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- DETAIL PRODUK VIEW -->
+<div id="view-detail" hidden></div>
+
+<!-- PANEL ADMIN VIEW -->
+<div id="view-admin" hidden>
+  <div class="container admin-wrap">
+    <div class="notice-box">
+      <strong>Catatan Keamanan Admin:</strong> Login dan data katalog tersimpan di browser perangkat ini (localStorage). Sebelum dipakai transaksi publik, disarankan menghubungkan sistem dengan backend database online.
+    </div>
+
+    <!-- Tampilan Formulir Login Admin -->
+    <div id="admin-login-sec" class="login-card">
+      <h3>Login Panel Admin</h3>
+      <p>Masuk untuk mengelola katalog produk di perangkat ini.</p>
+      <div class="field">
+        <label for="adm-user">Username</label>
+        <input type="text" id="adm-user" placeholder="admin">
+      </div>
+      <div class="field">
+        <label for="adm-pass">Password</label>
+        <input type="password" id="adm-pass" placeholder="••••••••">
+      </div>
+      <small style="color:var(--muted)">Default Login: <b>admin</b> / <b>Ginan123!</b></small>
+      <button class="btn btn-o" id="btn-admin-login">Masuk Admin</button>
+      <button class="btn btn-g btn-sm" data-action="exit-admin" style="margin-top:8px"><i data-lucide="arrow-left"></i>Kembali ke Toko</button>
+    </div>
+
+    <!-- Tampilan Dashboard Manajemen Admin -->
+    <div id="admin-mgmt-sec" hidden>
+      <div class="admin-head">
+        <div>
+          <span class="admin-tag mono">Mode Admin Terverifikasi</span>
+          <h2 class="hd">Kelola <em>Produk</em></h2>
+        </div>
+        <div class="admin-actions">
+          <button class="btn btn-g btn-sm" id="btn-export-json"><i data-lucide="download"></i>Cadangkan (JSON)</button>
+          <label class="btn btn-g btn-sm" style="cursor:pointer;margin:0"><i data-lucide="upload"></i>Impor (JSON)<input type="file" id="inp-import-json" accept=".json,application/json" hidden></label>
+          <button class="btn btn-g btn-sm" id="btn-open-settings"><i data-lucide="sliders-horizontal"></i>Pengaturan</button>
+          <button class="btn btn-g btn-sm" id="btn-reset-data"><i data-lucide="rotate-ccw"></i>Data Contoh</button>
+          <button class="btn btn-g btn-sm" id="btn-admin-logout"><i data-lucide="log-out"></i>Keluar Admin</button>
+          <button class="btn btn-o btn-sm" id="btn-add"><i data-lucide="plus"></i>Tambah Produk</button>
+        </div>
+      </div>
+      <div class="admin-tools">
+        <div class="admin-search">
+          <i data-lucide="search"></i>
+          <input type="text" id="admin-search" placeholder="Cari produk untuk diedit...">
+        </div>
+        <span id="admin-count"></span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Produk</th><th>Kategori</th><th>Harga</th><th>Stok</th><th>Label</th><th>Unggulan</th><th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="admin-rows"></tbody>
+        </table>
+      </div>
+      <p class="admin-note"><i data-lucide="database"></i>Semua perubahan otomatis tersimpan di browser (localStorage) dan langsung tampil di toko.</p>
+    </div>
+  </div>
+</div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="hazard"></div>
+  <div class="container">
+    <div class="f-word rv">GINAN <em>AUTOZONE</em></div>
+    <div class="f-grid">
+      <div>
+        <b class="hd" style="font-size:1.15rem">GINAN<em style="color:var(--orange)">AUTOZONE</em></b>
+        <p class="f-tag">Showroom &amp; toko otomotif premium milik Ginan — menyediakan mobil, motor, dan suku cadang original.</p>
+        <div class="f-sos">
+          <a class="icon-btn" href="#" data-social="Instagram"><i data-lucide="instagram"></i></a>
+          <a class="icon-btn" href="#" data-social="Facebook"><i data-lucide="facebook"></i></a>
+          <a class="icon-btn" href="#" data-social="YouTube"><i data-lucide="youtube"></i></a>
+          <a class="icon-btn" href="#" data-social="Twitter"><i data-lucide="twitter"></i></a>
+        </div>
+      </div>
+      <div>
+        <h5>Alamat</h5>
+        <p id="f-addr">Jl. AMD Kuripan, Kel. Kuripan, RT 06 RW 01, Kec. Ciseeng, Kab. Bogor, Jawa Barat</p>
+      </div>
+      <div>
+        <h5>Kontak WhatsApp</h5>
+        <a id="f-tel" href="#"><i data-lucide="phone"></i><span id="f-phone">0856-7306-369</span></a>
+        <a class="wa-generic" href="#" target="_blank" rel="noopener"><i data-lucide="message-circle"></i>Chat WhatsApp</a>
+      </div>
+      <div>
+        <h5>Jam Operasional</h5>
+        <p id="f-hours">Senin–Sabtu · 08.00–20.00 WIB</p>
+      </div>
+    </div>
+  </div>
+  <div class="hazard"></div>
+  <div class="container f-bottom">
+    <span>© 2026 GINAN AUTOZONE — Semua hak dilindungi.</span>
+    <button data-action="open-admin"><i data-lucide="lock"></i>Panel Admin</button>
+  </div>
+</footer>
+
+<!-- MODAL: FORM PRODUK -->
+<div class="modal" id="modal-form">
+  <div class="modal-back"></div>
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3 id="modal-form-title">Tambah Produk</h3>
+      <button class="icon-btn" data-close><i data-lucide="x"></i></button>
+    </div>
+    <form id="form-product">
+      <div class="form-grid">
+        <div class="field full">
+          <label for="f-name">Nama Produk *</label>
+          <input type="text" id="f-name" name="name" placeholder="mis. Yamaha YZF-R7" required>
+        </div>
+        <div class="field">
+          <label for="f-category">Kategori *</label>
+          <select id="f-category" name="category">
+            <option value="mobil">Mobil</option>
+            <option value="motor">Motor</option>
+            <option value="suku-cadang">Suku Cadang</option>
+            <option value="oli">Oli &amp; Pelumas</option>
+            <option value="ban">Ban &amp; Velg</option>
+            <option value="helm">Helm</option>
+            <option value="aksesoris">Aksesoris</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-stock">Stok *</label>
+          <input type="number" id="f-stock" name="stock" min="0" value="5" required>
+        </div>
+        <div class="field">
+          <label for="f-price">Harga Jual (Rp) *</label>
+          <input type="number" id="f-price" name="price" min="0" placeholder="mis. 189900000" required>
+        </div>
+        <div class="field">
+          <label for="f-old">Harga Sebelum Diskon (Rp)</label>
+          <input type="number" id="f-old" name="oldPrice" min="0" placeholder="kosongkan jika tidak diskon">
+          <small>Isi lebih besar dari harga jual untuk menampilkan label diskon otomatis.</small>
+        </div>
+        <div class="field">
+          <label for="f-badge">Label Tambahan</label>
+          <select id="f-badge" name="badge">
+            <option value="">Tanpa Label</option>
+            <option value="new">Produk Baru</option>
+          </select>
+        </div>
+        <div class="field check">
+          <input type="checkbox" id="f-featured" name="featured">
+          <label for="f-featured" style="letter-spacing:.1em">Tampilkan di Produk Unggulan</label>
+        </div>
+        <div class="field full">
+          <label for="f-img">URL Foto Produk</label>
+          <img class="img-preview" id="f-img-prev" src="https://picsum.photos/seed/az-preview/900/600.jpg" alt="Pratinjau foto"
+               onerror="this.src='https://picsum.photos/seed/az-fallback/900/600.jpg'">
+          <div class="img-row">
+            <input type="text" id="f-img" name="img" placeholder="https://... (kosongkan untuk foto acak)">
+            <button type="button" class="btn btn-g btn-sm" id="btn-rand-img">Acak</button>
+          </div>
+        </div>
+        <div class="field full">
+          <label for="f-desc">Deskripsi Singkat</label>
+          <textarea id="f-desc" name="desc" placeholder="Deskripsi produk yang tampil pada kartu katalog..."></textarea>
+        </div>
+      </div>
+      <div class="form-foot">
+        <button type="button" class="btn btn-g btn-sm" data-close>Batal</button>
+        <button type="submit" class="btn btn-o btn-sm"><i data-lucide="check"></i>Simpan Produk</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- MODAL: PENGATURAN PROMO & KONTAK -->
+<div class="modal" id="modal-settings">
+  <div class="modal-back"></div>
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>Pengaturan Promo &amp; Kontak</h3>
+      <button class="icon-btn" data-close><i data-lucide="x"></i></button>
+    </div>
+    <form id="form-settings">
+      <div class="form-grid">
+        <div class="field full">
+          <label for="s-title">Judul Promo</label>
+          <input type="text" id="s-title" required>
+        </div>
+        <div class="field full">
+          <label for="s-text">Deskripsi Promo</label>
+          <textarea id="s-text"></textarea>
+        </div>
+        <div class="field">
+          <label for="s-ends">Promo Berakhir Pada</label>
+          <input type="datetime-local" id="s-ends">
+        </div>
+        <div class="field">
+          <label for="s-wa">Nomor WhatsApp</label>
+          <input type="text" id="s-wa" placeholder="628567306369">
+          <small>Format internasional tanpa tanda +, mis. 628567306369.</small>
+        </div>
+        <div class="field full">
+          <label for="s-addr">Alamat Toko</label>
+          <input type="text" id="s-addr">
+        </div>
+        <div class="field">
+          <label for="s-phone">Telepon / Tampilan WA</label>
+          <input type="text" id="s-phone">
+        </div>
+        <div class="field">
+          <label for="s-hours">Jam Operasional</label>
+          <input type="text" id="s-hours">
+        </div>
+      </div>
+      <div class="form-foot">
+        <button type="button" class="btn btn-g btn-sm" data-close>Batal</button>
+        <button type="submit" class="btn btn-o btn-sm"><i data-lucide="check"></i>Simpan Pengaturan</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- MODAL: KONFIRMASI -->
+<div class="modal" id="modal-confirm">
+  <div class="modal-back"></div>
+  <div class="modal-box sm">
+    <div class="confirm-body">
+      <i data-lucide="triangle-alert"></i>
+      <h4 id="cf-title">Hapus produk?</h4>
+      <p id="cf-msg"></p>
+    </div>
+    <div class="form-foot" style="border-top:1px solid var(--line)">
+      <button type="button" class="btn btn-g btn-sm" data-close>Batal</button>
+      <button type="button" class="btn btn-o btn-sm" id="cf-yes">Ya, Hapus</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Container -->
+<div id="toasts"></div>
+
+<!-- JAVASCRIPT LOGIC -->
+<script>
+const LS_PRODUCTS  = 'ginan_autozone_products_v1';
+const LS_SETTINGS  = 'ginan_autozone_settings_v1';
+const BRAND        = 'GINAN AUTOZONE';
+
+let isAdminLoggedIn = false;
+
+const CATEGORIES = [
+  { id:'mobil',      label:'Mobil' },
+  { id:'motor',      label:'Motor' },
+  { id:'suku-cadang',label:'Suku Cadang' },
+  { id:'oli',        label:'Oli & Pelumas' },
+  { id:'ban',        label:'Ban & Velg' },
+  { id:'helm',       label:'Helm' },
+  { id:'aksesoris',  label:'Aksesoris' },
+];
+
+function seedProducts(){
+  return [
+    {id:'p1', name:'Ford Mustang GT 5.0 V8', category:'mobil', price:1450000000, oldPrice:1520000000, stock:2, badge:null, featured:true,  sku:'AZ-MST-001', img:'https://picsum.photos/seed/az-mustang/900/600.jpg', desc:'Muscle car ikonik dengan mesin V8 5.0L berperforma 480 HP. Unit baru, odometer rendah, siap kirim ke seluruh Indonesia.'},
+    {id:'p2', name:'Yamaha YZF-R7', category:'motor', price:189900000, oldPrice:null, stock:4, badge:'new', featured:true,  sku:'AZ-R7-002', img:'https://picsum.photos/seed/az-r7/900/600.jpg', desc:'Sportbike bermesin CP2 689 cc dengan tarikan linear dan desain agresif kelas MotoGP. Nyaman untuk harian maupun track day.'},
+    {id:'p3', name:'Helm AGV K6 Full Face', category:'helm', price:5400000, oldPrice:6250000, stock:7, badge:null, featured:true,  sku:'AZ-AGV-003', img:'https://picsum.photos/seed/az-helm/900/600.jpg', desc:'Helm premium rangka carbon-aramid, berat hanya 1.210 gram. Sertifikasi ECE 22.06 dengan ventilasi optimal untuk perjalanan jauh.'},
+    {id:'p4', name:'BMW M4 Competition Coupe', category:'mobil', price:1999000000, oldPrice:null, stock:1, badge:'new', featured:false, sku:'AZ-BMW-004', img:'https://picsum.photos/seed/az-m4/900/600.jpg', desc:'Coupe performa tinggi bermesin straight-six 510 HP dengan M xDrive. Interior Merino leather dan paket Carbon exterior.'},
+    {id:'p5', name:'Honda CBR650R E-Clutch', category:'motor', price:299900000, oldPrice:315000000, stock:3, badge:null, featured:false, sku:'AZ-CBR-005', img:'https://picsum.photos/seed/az-cbr/900/600.jpg', desc:'Mid-class sportbike dengan teknologi E-Clutch — perpindahan gigi tanpa menarik kopling. Mesin inline-four 649 cc yang halus.'},
+    {id:'p6', name:'Racing Clutch Kit Heavy Duty', category:'suku-cadang', price:4850000, oldPrice:5600000, stock:12, badge:null, featured:false, sku:'AZ-CLT-006', img:'https://picsum.photos/seed/az-clutch/900/600.jpg', desc:'Set kopling racing heavy-duty untuk mesin bensin 4 silinder. Tahan panas tinggi, cocok untuk harian moderasi hingga track.'},
+    {id:'p7', name:'Paket Bushing & Tie Rod Complete', category:'suku-cadang', price:950000, oldPrice:null, stock:25, badge:null, featured:false, sku:'AZ-BSH-007', img:'https://picsum.photos/seed/az-bushing/900/600.jpg', desc:'Paket kaki-kaki lengkap: bushing stabilizer, tie rod end, dan ball joint. Material karet campuran yang tahan aus.'},
+    {id:'p8', name:'Aero Flow Oli Sintetik 10W-40 (4L)', category:'oli', price:685000, oldPrice:850000, stock:40, badge:null, featured:false, sku:'AZ-OLI-008', img:'https://picsum.photos/seed/az-oli/900/600.jpg', desc:'Full synthetic API SN untuk mesin bensin modern. Proteksi termal maksimal dan interval penggantian hingga 10.000 km.'},
+    {id:'p9', name:'Gear Oil Racing 75W-140 (1L)', category:'oli', price:320000, oldPrice:null, stock:35, badge:'new', featured:false, sku:'AZ-OLI-009', img:'https://picsum.photos/seed/az-gearoil/900/600.jpg', desc:'Oil gardan racing GL-5 dengan aditif ekstrem-tekanan. Ideal untuk differential mobil performa dan kendaraan beban berat.'},
+    {id:'p10', name:'Ban Mobil All-Season 225/45 R17', category:'ban', price:1250000, oldPrice:1450000, stock:28, badge:null, featured:false, sku:'AZ-BAN-010', img:'https://picsum.photos/seed/az-ban/900/600.jpg', desc:'Ban all-season dengan pola asimetris — grip stabil di jalan kering maupun basah, tingkat kebisingan rendah.'},
+    {id:'p11', name:'Velg Racing Forged 17" (1 Set)', category:'ban', price:8750000, oldPrice:null, stock:5, badge:'new', featured:false, sku:'AZ-VLG-011', img:'https://picsum.photos/seed/az-velg/900/600.jpg', desc:'Velg forged ringan (7,4 kg/pcs) finish matte bronze. PCD 4x100/114,3, load rating tinggi untuk pemakaian harian.'},
+    {id:'p12', name:'Dashcam 4K Dual Channel WiFi', category:'aksesoris', price:1350000, oldPrice:1699000, stock:18, badge:null, featured:false, sku:'AZ-DSH-012', img:'https://picsum.photos/seed/az-dashcam/900/600.jpg', desc:'Rekaman 4K depan + 1080p belakang, layar sentuh, WiFi untuk unduh langsung ke HP, dan mode parkir 24 jam.'},
+    {id:'p13', name:'Lampu LED H4 Pro Series 6000K', category:'aksesoris', price:450000, oldPrice:525000, stock:30, badge:null, featured:false, sku:'AZ-LED-013', img:'https://picsum.photos/seed/az-led/900/600.jpg', desc:'LED headlamp 6000K dengan chip CSP terbaru — 3x lebih terang dari halogen, beam pattern presisi tanpa silau.'},
+  ];
+}
+
+function seedSettings(){
+  return {
+    promoTitle:'Flash Sale Akhir Bulan',
+    promoText:'Diskon hingga 25% untuk oli, ban, dan suku cadang pilihan. Harga kembali normal begitu timer berakhir — selama stok masih tersedia.',
+    promoEnds:new Date(Date.now() + 3*24*3600*1000).toISOString(),
+    whatsapp:'628567306369',
+    address:'Jl. AMD Kuripan, Kel. Kuripan, RT 06 RW 01, Kec. Ciseeng, Kab. Bogor, Jawa Barat',
+    phone:'0856-7306-369',
+    hours:'Senin–Sabtu · 08.00–20.00 WIB',
+  };
+}
+
+const $  = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+
+const rupiah = n => new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(n);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+const catLabel   = id => (CATEGORIES.find(c => c.id === id) || {label:id}).label;
+const discountPct= p  => (p.oldPrice && p.oldPrice > p.price) ? Math.round((1 - p.price / p.oldPrice) * 100) : 0;
+const skuOf      = p  => p.sku || ('AZ-' + String(p.id).slice(-4).toUpperCase());
+const randomImg  = () => `https://picsum.photos/seed/az-${Math.random().toString(36).slice(2,8)}/900/600.jpg`;
+
+function toast(msg, icon = 'circle-check'){
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.innerHTML = `<i data-lucide="${icon}"></i><span>${esc(msg)}</span>`;
+  $('#toasts').appendChild(t);
+  lucide.createIcons();
+  setTimeout(() => { t.classList.add('out'); setTimeout(() => t.remove(), 320); }, 2800);
+}
+
+function openModal(sel){ $(sel).classList.add('show'); document.body.style.overflow = 'hidden'; }
+function closeModal(sel){ $(sel).classList.remove('show'); document.body.style.overflow = ''; }
+
+let confirmCb = null;
+function askConfirm(title, msg, yesLabel, cb){
+  $('#cf-title').textContent = title;
+  $('#cf-msg').textContent   = msg;
+  $('#cf-yes').textContent   = yesLabel;
+  confirmCb = cb;
+  openModal('#modal-confirm');
+}
+
+let products = [];
+let settings = {};
+
+function loadProducts(){
+  try{
+    const d = JSON.parse(localStorage.getItem(LS_PRODUCTS));
+    if (Array.isArray(d) && d.length) return d;
+  }catch(e){}
+  return seedProducts();
+}
+function loadSettings(){
+  try{
+    const d = JSON.parse(localStorage.getItem(LS_SETTINGS));
+    if (d && typeof d === 'object') return Object.assign(seedSettings(), d);
+  }catch(e){}
+  return seedSettings();
+}
+function saveProducts(){ localStorage.setItem(LS_PRODUCTS, JSON.stringify(products)); }
+function saveSettings(){ localStorage.setItem(LS_SETTINGS, JSON.stringify(settings)); }
+
+function waLink(p){
+  const msg = `Halo ${BRAND}, saya ingin bertanya/memesan:\n${p.name}\nHarga tercantum:${rupiah(p.price)}\nApakah masih tersedia?`;
+  return `https://wa.me/${settings.whatsapp}?text=${encodeURIComponent(msg)}`;
+}
+function applyWaGeneric(){
+  const url = 'https://wa.me/' + settings.whatsapp +
+              '?text=' + encodeURIComponent(`Halo ${BRAND}, saya ingin bertanya tentang produk Anda.`);
+  $$('.wa-generic').forEach(a => a.href = url);
+}
+
+const state = { q:'', cat:'semua', sort:'default' };
+let currentView = 'home';
+let editingId   = null;
+
+function refreshUI(){ lucide.createIcons(); observeReveals(); }
+
+function showView(name){
+  currentView = name;
+  $('#view-home').hidden   = name !== 'home';
+  $('#view-detail').hidden = name !== 'detail';
+  $('#view-admin').hidden  = name !== 'admin';
+  window.scrollTo(0, 0);
+  document.body.classList.remove('nav-open');
+  refreshUI();
+}
+
+function goSection(id){
+  document.body.classList.remove('nav-open');
+  if (currentView !== 'home'){
+    showView('home');
+    requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView({behavior:'smooth'}));
+  } else {
+    document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
+  }
+}
+
+function cardHTML(p, extra = '', idx = 0){
+  const disc = discountPct(p);
+  const out  = p.stock <= 0;
+  const badge = out ? `<span class="badge badge-out">Stok Habis</span>`
+    : disc ? `<span class="badge badge-disc">-${disc}%</span>`
+    : p.badge === 'new' ? `<span class="badge badge-new">Baru</span>` : '';
+  const low  = (!out && p.stock <= 2) ? ` · <b>Stok ${p.stock}</b>` : '';
+  return `
+  <article class="card rv ${extra}" style="transition-delay:${(idx % 8) * 55}ms">
+    <a href="#" class="card-media" data-detail="${p.id}">
+      <img src="${esc(p.img)}" alt="${esc(p.name)}" loading="lazy"
+           onerror="this.src='https://picsum.photos/seed/az-fallback/900/600.jpg'">
+      ${badge}
+      <span class="card-go"><i data-lucide="arrow-up-right"></i></span>
+    </a>
+    <div class="card-body">
+      <div class="card-meta mono"><b>${esc(catLabel(p.category))}</b>${low}</div>
+      <h3 class="card-name">${esc(p.name)}</h3>
+      <p class="card-desc">${esc(p.desc)}</p>
+      <div class="card-price">
+        ${p.oldPrice && p.oldPrice > p.price ? `<span class="price-old mono">${rupiah(p.oldPrice)}</span>` : ''}
+        <span class="price">${rupiah(p.price)}</span>
+      </div>
+    </div>
+    <div class="card-actions">
+      <button class="act-detail" data-detail="${p.id}">Detail <i data-lucide="arrow-right"></i></button>
+      <a class="act-wa" href="${waLink(p)}" target="_blank" rel="noopener" title="Pesan via WhatsApp">
+        <i data-lucide="message-circle"></i>
+      </a>
+    </div>
+  </article>`;
+}
+
+function renderCategories(){
+  $('#cat-list').innerHTML = CATEGORIES.map((c, i) => {
+    const n = products.filter(p => p.category === c.id).length;
+    return `
+    <div class="cat-row" data-cat="${c.id}">
+      <span class="cat-num mono">0${i + 1}</span>
+      <span class="cat-name">${c.label}</span>
+      <span class="cat-count mono">${n} Produk</span>
+      <i data-lucide="arrow-up-right"></i>
+    </div>`;
+  }).join('');
+  
+  $('#chips').innerHTML =
+    `<button class="chip-f ${state.cat === 'semua' ? 'on' : ''}" data-chip="semua">Semua</button>` +
+    CATEGORIES.map(c =>
+      `<button class="chip-f ${state.cat === c.id ? 'on' : ''}" data-chip="${c.id}">${c.label}</button>`
+    ).join('');
+}
+
+function filteredProducts(){
+  let list = products.filter(p => {
+    const okCat = state.cat === 'semua' || p.category === state.cat;
+    const q = state.q.trim().toLowerCase();
+    const okQ = !q || (p.name + ' ' + (p.desc || '') + ' ' + catLabel(p.category)).toLowerCase().includes(q);
+    return okCat && okQ;
+  });
+  if (state.sort === 'price-asc')  list = [...list].sort((a, b) => a.price - b.price);
+  if (state.sort === 'price-desc') list = [...list].sort((a, b) => b.price - a.price);
+  if (state.sort === 'name')       list = [...list].sort((a, b) => a.name.localeCompare(b.name, 'id'));
+  return list;
+}
+
+function renderCatalog(){
+  const list = filteredProducts();
+  $('#result-info').textContent = `Menampilkan ${list.length} dari${products.length} produk`;
+  $('#catalog-grid').innerHTML = list.length
+    ? list.map((p, i) => cardHTML(p, '', i)).join('')
+    : `<div class="empty">
+         <i data-lucide="search-x"></i>
+         <p><b>Tidak ada produk ditemukan.</b><br>Coba ubah kata kunci atau filter kategori.</p>
+         <button class="btn btn-g btn-sm" id="btn-reset-filter">Reset Filter</button>
+       </div>`;
+  refreshUI();
+}
+
+function renderFeatured(){
+  const f = products.filter(p => p.featured).slice(0, 3);
+  $('#feat-main').innerHTML = f[0] ? cardHTML(f[0], 'card-lg') : '';
+  $('#feat-side').innerHTML = f.slice(1).map((p, i) => cardHTML(p, '', i)).join('');
+  refreshUI();
+}
+
+function renderPromoList(){
+  const list = products.filter(p => discountPct(p) > 0)
+                       .sort((a, b) => discountPct(b) - discountPct(a)).slice(0, 3);
+  $('#promo-list').innerHTML = list.map(p => `
+    <div class="promo-item" data-detail="${p.id}">
+      <img src="${esc(p.img)}" alt="" onerror="this.src='https://picsum.photos/seed/az-fallback/900/600.jpg'">
+      <div class="promo-item-info">
+        <span class="promo-cat mono">${esc(catLabel(p.category))}</span>
+        <h4>${esc(p.name)}</h4>
+        <div class="promo-price mono"><s>${rupiah(p.oldPrice)}</s><b>${rupiah(p.price)}</b></div>
+      </div>
+      <i data-lucide="arrow-up-right"></i>
+    </div>`).join('') || '<p style="padding:24px;color:var(--muted)">Belum ada produk diskon.</p>';
+  refreshUI();
+}
+
+function renderAll(){
+  renderCategories();
+  renderFeatured();
+  renderPromoList();
+  renderCatalog();
+}
+
+function openDetail(id){
+  const p = products.find(x => String(x.id) === String(id));
+  if (!p) return;
+  const disc = discountPct(p);
+  const out  = p.stock <= 0;
+  const badge = out ? `<span class="badge badge-out" style="position:static;display:inline-block;margin-top:14px">Stok Habis</span>`
+    : disc ? `<span class="chip on">Hemat ${disc}%</span>` : '';
+  const related = products.filter(x => x.category === p.category && String(x.id) !== String(p.id)).slice(0, 3);
+
+  $('#view-detail').innerHTML = `
+  <div class="container detail-wrap">
+    <button class="back-link" data-action="back"><i data-lucide="arrow-left"></i>Kembali ke Katalog</button>
+    <div class="detail-grid">
+      <figure class="detail-media">
+        <img src="${esc(p.img)}" alt="${esc(p.name)}"
+             onerror="this.src='https://picsum.photos/seed/az-fallback/900/600.jpg'">
+        <figcaption class="detail-sku mono">${esc(skuOf(p))}</figcaption>
+      </figure>
+      <div class="detail-info">
+        <div class="eyebrow">${esc(catLabel(p.category))}</div>
+        <h1 class="hd">${esc(p.name)}</h1>
+        <div class="detail-price">
+          <span class="price">${rupiah(p.price)}</span>${p.oldPrice && p.oldPrice > p.price ? `<s class="price-old mono" style="font-size:.85rem">${rupiah(p.oldPrice)}</s>` : ''}
+          ${badge}
+        </div>
+        <p class="detail-desc">${esc(p.desc || 'Belum ada deskripsi untuk produk ini.')}</p>
+        <div class="spec">
+          <div><span>Kategori</span><b>${esc(catLabel(p.category))}</b></div>
+          <div><span>Kode Produk</span><b class="mono">${esc(skuOf(p))}</b></div>
+          <div><span>Stok</span><b class="mono ${p.stock <= 2 ? 'stock-low' : ''}">${p.stock > 0 ? p.stock + ' Unit' : 'Habis'}</b></div>
+          <div><span>Garansi</span><b>Resmi Distributor</b></div>
+        </div>
+        <div class="detail-cta">
+          <a class="btn btn-o" href="${waLink(p)}" target="_blank" rel="noopener">
+            <i data-lucide="message-circle"></i>Pesan via WhatsApp
+          </a>
+          <button class="btn btn-g" data-action="back"><i data-lucide="layout-grid"></i>Lihat Katalog</button>
+        </div>
+        <p class="detail-note mono"><i data-lucide="shield-check"></i>Transaksi diproses manual oleh tim ${BRAND} — tanpa pembayaran online.</p>
+      </div>
+    </div>
+    ${related.length ? `
+    <div class="related">
+      <div class="sec-head">
+        <div class="eyebrow">Produk Terkait</div>
+        <h2 class="sec-title hd" style="margin-top:12px">Kategori ${esc(catLabel(p.category))}</h2>
+      </div>
+      <div class="grid">${related.map((r, i) => cardHTML(r, '', i)).join('')}</div>
+    </div>` : ''}
+  </div>`;
+  showView('detail');
+}
+
+/* Panel Admin Login & CRUD */
+function renderAdmin(){
+  if (!isAdminLoggedIn) {
+    $('#admin-login-sec').hidden = false;
+    $('#admin-mgmt-sec').hidden = true;
+    return;
+  }
+  $('#admin-login-sec').hidden = true;
+  $('#admin-mgmt-sec').hidden = false;
+
+  const q = ($('#admin-search').value || '').toLowerCase();
+  const list = products.filter(p => p.name.toLowerCase().includes(q));
+  $('#admin-count').textContent = `${list.length} produk terdaftar`;
+
+  $('#admin-rows').innerHTML = list.length ? list.map(p => {
+    const disc = discountPct(p);
+    const chip = p.stock <= 0 ? `<span class="chip chip-out">Habis</span>`
+      : disc ? `<span class="chip on">-${disc}%</span>`
+      : p.badge === 'new' ? `<span class="chip chip-new">Baru</span>`
+      : `<span style="color:var(--muted)">—</span>`;
+    return `
+    <tr>
+      <td><div class="prod-cell">
+        <img src="${esc(p.img)}" onerror="this.src='https://picsum.photos/seed/az-fallback/900/600.jpg'">
+        <div><b>${esc(p.name)}</b><span class="sku mono">${esc(skuOf(p))}</span></div>
+      </div></td>
+      <td>${esc(catLabel(p.category))}</td>
+      <td class="mono td-price">${rupiah(p.price)}${p.oldPrice && p.oldPrice > p.price ? `<br><s class="td-old">${rupiah(p.oldPrice)}</s>` : ''}</td>
+      <td class="mono ${p.stock <= 2 ? 'stock-low' : ''}">${p.stock}</td>
+      <td>${chip}</td>
+      <td>${p.featured ? '<i data-lucide="star" class="feat-star"></i>' : '<span style="color:var(--muted)">—</span>'}</td>
+      <td><div class="row-actions">
+        <button class="mini-btn" data-edit="${p.id}" title="Edit"><i data-lucide="pencil"></i></button>
+        <button class="mini-btn" data-del="${p.id}" title="Hapus"><i data-lucide="trash-2"></i></button>
+      </div></td>
+    </tr>`;
+  }).join('') : `<tr><td colspan="7" class="empty-td">Tidak ada produk. Klik "Tambah Produk" untuk membuat.</td></tr>`;
+
+  refreshUI();
+}
+
+$('#btn-admin-login').addEventListener('click', () => {
+  const u = $('#adm-user').value.trim();
+  const p = $('#adm-pass').value.trim();
+  if (u === 'admin' && p === 'Ginan123!') {
+    isAdminLoggedIn = true;
+    toast('Login Admin berhasil!');
+    renderAdmin();
+  } else {
+    toast('Username atau password admin salah!', 'triangle-alert');
+  }
+});
+
+$('#btn-admin-logout').addEventListener('click', () => {
+  isAdminLoggedIn = false;
+  toast('Telah keluar dari Admin.');
+  renderAdmin();
+});
+
+function openProductForm(id){
+  editingId = id || null;
+  const p = id ? products.find(x => String(x.id) === String(id)) : null;
+  $('#form-product').reset();
+  $('#f-name').value     = p ? p.name : '';
+  $('#f-category').value = p ? p.category : 'mobil';
+  $('#f-price').value    = p ? p.price : '';
+  $('#f-old').value      = p && p.oldPrice ? p.oldPrice : '';
+  $('#f-stock').value    = p ? p.stock : 5;
+  $('#f-badge').value    = p ? (p.badge || '') : '';
+  $('#f-featured').checked = p ? !!p.featured : false;
+  $('#f-img').value      = p ? p.img : '';
+  $('#f-desc').value     = p ? (p.desc || '') : '';
+  $('#f-img-prev').src   = p ? p.img : 'https://picsum.photos/seed/az-preview/900/600.jpg';
+  $('#modal-form-title').textContent = p ? 'Edit Produk' : 'Tambah Produk Baru';
+  openModal('#modal-form');
+}
+
+$('#form-product').addEventListener('submit', e => {
+  e.preventDefault();
+  const f = e.target;
+  const name  = f.name.value.trim();
+  const price = parseInt(f.price.value, 10);
+  const old   = parseInt(f.oldPrice.value, 10) || null;
+  const stock = parseInt(f.stock.value, 10) || 0;
+
+  if (!name || !price || price <= 0){
+    toast('Nama dan harga produk wajib diisi dengan benar.', 'circle-alert');
+    return;
+  }
+  const data = {
+    name, price, stock,
+    category: f.category.value,
+    oldPrice: (old && old > price) ? old : null,
+    badge:    f.badge.value || null,
+    featured: f.featured.checked,
+    desc:     f.desc.value.trim(),
+    img:      f.img.value.trim() || randomImg(),
+  };
+
+  if (editingId){
+    const i = products.findIndex(p => String(p.id) === String(editingId));
+    products[i] = { ...products[i], ...data };
+    toast('Produk berhasil diperbarui.');
+  } else {
+    products.unshift({ id: String(Date.now()), ...data });
+    toast('Produk baru berhasil ditambahkan.');
+  }
+  saveProducts();
+  renderAll();
+  if (currentView === 'admin') renderAdmin();
+  closeModal('#modal-form');
+});
+
+$('#admin-rows').addEventListener('click', e => {
+  const ed = e.target.closest('[data-edit]');
+  const dl = e.target.closest('[data-del]');
+  if (ed) openProductForm(ed.dataset.edit);
+  if (dl){
+    const p = products.find(x => String(x.id) === dl.dataset.del);
+    askConfirm('Hapus produk ini?',
+      `"${p.name}" akan dihapus permanen dari katalog. Tindakan ini tidak bisa dibatalkan.`,
+      'Ya, Hapus',
+      () => {
+        products = products.filter(x => String(x.id) !== String(p.id));
+        saveProducts();
+        renderAll();
+        renderAdmin();
+        toast('Produk telah dihapus.', 'trash-2');
+      });
+  }
+});
+
+function openSettings(){
+  $('#s-title').value  = settings.promoTitle;
+  $('#s-text').value   = settings.promoText;
+  $('#s-ends').value   = toInputDate(settings.promoEnds);
+  $('#s-wa').value     = settings.whatsapp;
+  $('#s-addr').value   = settings.address;
+  $('#s-phone').value  = settings.phone;
+  $('#s-hours').value  = settings.hours;
+  openModal('#modal-settings');
+}
+
+function toInputDate(iso){
+  const d = new Date(iso);
+  return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+}
+
+$('#form-settings').addEventListener('submit', e => {
+  e.preventDefault();
+  settings.promoTitle = $('#s-title').value.trim() || settings.promoTitle;
+  settings.promoText  = $('#s-text').value.trim();
+  settings.whatsapp   = $('#s-wa').value.replace(/\D/g,'') || settings.whatsapp;
+  settings.address    = $('#s-addr').value.trim();
+  settings.phone      = $('#s-phone').value.trim();
+  settings.hours      = $('#s-hours').value.trim();
+  const ends = new Date($('#s-ends').value);
+  if (!isNaN(ends)) settings.promoEnds = ends.toISOString();
+  saveSettings();
+  applySettings();
+  closeModal('#modal-settings');
+  toast('Pengaturan berhasil disimpan.');
+});
+
+/* Impor / Ekspor JSON Data */
+$('#btn-export-json').addEventListener('click', () => {
+  const a = document.createElement('a');
+  const u = URL.createObjectURL(new Blob([JSON.stringify(products, null, 2)], {type:'application/json'}));
+  a.href = u;
+  a.download = 'ginan-autozone-katalog.json';
+  a.click();
+  URL.revokeObjectURL(u);
+  toast('Data produk berhasil diunduh (JSON).');
+});
+
+$('#inp-import-json').addEventListener('change', e => {
+  const f = e.target.files[0];
+  if (!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+    try {
+      const d = JSON.parse(r.result);
+      if (!Array.isArray(d)) throw Error();
+      products = d;
+      saveProducts();
+      renderAll();
+      renderAdmin();
+      toast('Katalog berhasil diimpor dari file JSON.');
+    } catch {
+      toast('File JSON tidak valid.', 'triangle-alert');
+    }
+  };
+  r.readAsText(f);
+});
+
+function applySettings(){
+  $('#promo-title').textContent = settings.promoTitle;
+  $('#promo-text').textContent  = settings.promoText;
+  $('#f-addr').textContent      = settings.address;
+  $('#f-phone').textContent     = settings.phone;
+  $('#f-tel').href              = 'tel:' + settings.phone.replace(/[^0-9+]/g,'');
+  $('#f-hours').textContent     = settings.hours;
+  applyWaGeneric();
+  tickCountdown();
+}
+
+function tickCountdown(){
+  const end  = new Date(settings.promoEnds).getTime();
+  const diff = Math.max(0, end - Date.now());
+  const pad  = n => String(n).padStart(2, '0');
+  $('#cd-d').textContent = pad(Math.floor(diff / 864e5));
+  $('#cd-h').textContent = pad(Math.floor(diff % 864e5 / 36e5));
+  $('#cd-m').textContent = pad(Math.floor(diff % 36e5 / 6e4));
+  $('#cd-s').textContent = pad(Math.floor(diff % 6e4 / 1e3));
+}
+setInterval(tickCountdown, 1000);
+
+function closeWelcome(withGreeting){
+  const w = $('#welcome');
+  if (!w || w.classList.contains('hide')) return;
+  w.classList.add('hide');
+  document.body.classList.remove('welcome-on');
+  if (withGreeting) toast(`Selamat datang di ${BRAND} — selamat berbelanja!`, 'sparkles');
+}
+$('#welcome').addEventListener('click', () => closeWelcome(true));
+
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (en.isIntersecting){ en.target.classList.add('in'); revObs.unobserve(en.target); }
+  });
+}, { threshold: .1 });
+function observeReveals(){ $$('.rv:not(.in)').forEach(el => revObs.observe(el)); }
+
+function runCount(el){
+  const target = parseFloat(el.dataset.count) || 0;
+  const out    = el.querySelector('.cnt');
+  const dur = 1600, st = performance.now();
+  (function step(now){
+    const k = Math.min(1, (now - st) / dur);
+    const e = 1 - Math.pow(1 - k, 3);
+    out.textContent = Math.round(target * e).toLocaleString('id-ID');
+    if (k < 1) requestAnimationFrame(step);
+  })(st);
+}
+function initCounters(){
+  const io = new IntersectionObserver((es, ob) => {
+    es.forEach(en => { if (en.isIntersecting){ runCount(en.target); ob.unobserve(en.target); } });
+  }, { threshold: .4 });
+  $$('.stat').forEach(el => io.observe(el));
+}
+
+document.addEventListener('click', e => {
+  const d = e.target.closest('[data-detail]');
+  if (d){ e.preventDefault(); openDetail(d.dataset.detail); return; }
+
+  const sec = e.target.closest('[data-sec]');
+  if (sec){ e.preventDefault(); goSection(sec.dataset.sec); return; }
+
+  const chip = e.target.closest('[data-chip]');
+  if (chip){
+    state.cat = chip.dataset.chip;
+    renderCategories(); renderCatalog();
+    return;
+  }
+  const crow = e.target.closest('[data-cat]');
+  if (crow){
+    state.cat = crow.dataset.cat;
+    renderCategories(); renderCatalog();
+    goSection('katalog');
+    return;
+  }
+  if (e.target.closest('#btn-reset-filter')){
+    state.q = ''; state.cat = 'semua'; state.sort = 'default';
+    $('#inp-search').value = ''; $('#sel-sort').value = 'default';
+    renderCategories(); renderCatalog();
+    return;
+  }
+  const act = e.target.closest('[data-action]');
+  if (act){
+    const a = act.dataset.action;
+    if (a === 'back'){ showView('home'); goSection('katalog'); }
+    if (a === 'go-home'){ showView('home'); window.scrollTo({top:0, behavior:'smooth'}); }
+    if (a === 'exit-admin'){ showView('home'); toast('Kembali ke tampilan toko.'); }
+    if (a === 'open-admin'){ showView('admin'); renderAdmin(); }
+    return;
+  }
+  const close = e.target.closest('[data-close]');
+  if (close){ closeModal('#' + close.closest('.modal').id); return; }
+  if (e.target.classList.contains('modal-back')) closeModal('#' + e.target.parentElement.id);
+  const soc = e.target.closest('[data-social]');
+  if (soc){ e.preventDefault(); toast(`Hubungkan tautan ${soc.dataset.social} ke akun Anda melalui panel edit.`, 'circle-alert'); }
+});
+
+$('#cf-yes').addEventListener('click', () => {
+  closeModal('#modal-confirm');
+  if (confirmCb) confirmCb();
+  confirmCb = null;
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape'){
+    $$('.modal.show').forEach(m => closeModal('#' + m.id));
+    document.body.classList.remove('nav-open');
+    closeWelcome(false);
+  }
+});
+
+$('#inp-search').addEventListener('input', e => { state.q = e.target.value; renderCatalog(); });
+$('#sel-sort').addEventListener('change', e => { state.sort = e.target.value; renderCatalog(); });
+
+$('#admin-search').addEventListener('input', renderAdmin);
+$('#btn-add').addEventListener('click', () => openProductForm());
+$('#btn-open-settings').addEventListener('click', openSettings);
+$('#btn-reset-data').addEventListener('click', () => {
+  askConfirm('Muat ulang data contoh?',
+    'Seluruh produk dan pengaturan akan dikembalikan ke data contoh awal. Perubahan Anda akan hilang.',
+    'Ya, Muat Ulang',
+    () => {
+      products = seedProducts(); settings = seedSettings();
+      saveProducts(); saveSettings();
+      applySettings(); renderAll(); renderAdmin();
+      toast('Data contoh berhasil dimuat ulang.');
+    });
+});
+
+$('#f-img').addEventListener('input', e => {
+  $('#f-img-prev').src = e.target.value.trim() || 'https://picsum.photos/seed/az-preview/900/600.jpg';
+});
+$('#btn-rand-img').addEventListener('click', () => {
+  $('#f-img').value = randomImg();
+  $('#f-img-prev').src = $('#f-img').value;
+});
+
+$('#hamb').addEventListener('click', () => document.body.classList.toggle('nav-open'));
+$('#m-close').addEventListener('click', () => document.body.classList.remove('nav-open'));
+$('#m-overlay').addEventListener('click', () => document.body.classList.remove('nav-open'));
+
+window.addEventListener('scroll', () => {
+  $('#topbar').classList.toggle('scrolled', window.scrollY > 10);
+});
+
+(function init(){
+  const track = $('.marquee-track');
+  if (track && $('#mq-group')) {
+    track.appendChild($('#mq-group').cloneNode(true));
+  }
+
+  products = loadProducts();
+  settings = loadSettings();
+
+  applySettings();
+  renderAll();
+  initCounters();
+  tickCountdown();
+  refreshUI();
+})();
+</script>
+</body>
+</html>
