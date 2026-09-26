@@ -503,7 +503,7 @@ tbody tr:hover td{background:#17181b}
       <a class="btn btn-g btn-sm wa-generic" href="#" target="_blank" rel="noopener">
         <i data-lucide="message-circle"></i>WhatsApp
       </a>
-      <button class="icon-btn" data-action="open-admin" title="Panel Admin"><i data-lucide="lock"></i></button>
+    
       <button class="icon-btn" id="hamb" title="Menu"><i data-lucide="menu"></i></button>
     </div>
   </div>
@@ -526,8 +526,7 @@ tbody tr:hover td{background:#17181b}
   </nav>
   <div class="m-foot">
     <a class="btn btn-o wa-generic" href="#" target="_blank" rel="noopener"><i data-lucide="message-circle"></i>Hubungi Kami</a>
-    <button class="btn btn-g" data-action="open-admin"><i data-lucide="lock"></i>Panel Admin</button>
-  </div>
+   
 </aside>
 
 <main>
@@ -816,7 +815,7 @@ tbody tr:hover td{background:#17181b}
         <label for="adm-pass">Password</label>
         <input type="password" id="adm-pass" placeholder="••••••••">
       </div>
-      <small style="color:var(--muted)">Default Login: <b>admin</b> / <b>Ginan123!</b></small>
+      <small style="color:var(--muted)">Login Admin Khusus Pemilik Toko</small>
       <button class="btn btn-o" id="btn-admin-login">Masuk Admin</button>
       <button class="btn btn-g btn-sm" data-action="exit-admin" style="margin-top:8px"><i data-lucide="arrow-left"></i>Kembali ke Toko</button>
     </div>
@@ -894,7 +893,7 @@ tbody tr:hover td{background:#17181b}
   <div class="hazard"></div>
   <div class="container f-bottom">
     <span>© 2026 GINAN AUTOZONE — Semua hak dilindungi.</span>
-    <button data-action="open-admin"><i data-lucide="lock"></i>Panel Admin</button>
+   
   </div>
 </footer>
 
@@ -1378,7 +1377,7 @@ function renderAdmin(){
 $('#btn-admin-login').addEventListener('click', () => {
   const u = $('#adm-user').value.trim();
   const p = $('#adm-pass').value.trim();
-  if (u === 'admin' && p === 'Ginan123!') {
+  if (u === 'admin' && p === '123456Gin.') {
     isAdminLoggedIn = true;
     toast('Login Admin berhasil!');
     renderAdmin();
